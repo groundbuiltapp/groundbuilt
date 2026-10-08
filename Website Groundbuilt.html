@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Groundbuilt</title>
+    <link rel="icon" href="/favicon.ico?v=2" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png?v=2">
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png?v=2">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: #e0e0e0;
+            background: #0f0f0f;
+        }
+
+        header {
+            padding: 24px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #2a2a2a;
+            position: sticky;
+            top: 0;
+            background: #0f0f0f;
+            z-index: 100;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .logo img {
+            height: 32px;
+            width: 32px;
+            display: block;
+        }
+
+        .header-nav {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+        }
+
+        nav a {
+            font-size: 13px;
+            color: #999;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        nav a:hover {
+            color: #e0e0e0;
+        }
+
+        .cta-button {
+            background: white;
+            color: #0f0f0f;
+            padding: 10px 20px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 13px;
+            cursor: pointer;
+            border: none;
+            transition: background 0.2s;
+        }
+
+        .cta-button:hover {
+            background: #e0e0e0;
+        }
+
+        main {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        section {
+            padding: 100px 0;
+        }
+
+        section:not(:last-child) {
+            border-bottom: 1px solid #2a2a2a;
+        }
+
+        h1 {
+            font-size: 56px;
+            line-height: 1.15;
+            margin-bottom: 24px;
+            font-weight: 700;
+        }
+
+        h2 {
+            font-size: 42px;
+            line-height: 1.2;
+            margin-bottom: 40px;
+            font-weight: 700;
+        }
+
+        h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: white;
+        }
+
+        p {
+            font-size: 16px;
+            color: #aaa;
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        .hero p {
+            font-size: 20px;
+            max-width: 800px;
+            margin-bottom: 40px;
+            color: #999;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 80px;
+        }
+
+        .btn-primary {
+            background: white;
+            color: #0f0f0f;
+            padding: 14px 32px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            border: none;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .btn-primary:hover {
+            background: #e0e0e0;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            padding: 14px 32px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            border: 1px solid #444;
+            cursor: pointer;
+            transition: border-color 0.2s;
+        }
+
+        .btn-secondary:hover {
+            border-color: #e0e0e0;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+        }
+
+        .service-item {
+            margin-bottom: 40px;
+        }
+
+        .service-item strong {
+            color: white;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+        }
+
+        .pricing-card {
+            padding-bottom: 60px;
+            border-bottom: 1px solid #2a2a2a;
+        }
+
+        .pricing-card:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .price-label {
+            font-size: 14px;
+            color: #666;
+            font-weight: 500;
+            margin-bottom: 12px;
+        }
+
+        .price {
+            font-size: 48px;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 8px;
+        }
+
+        .price-period {
+            font-size: 15px;
+            color: #999;
+            margin-bottom: 32px;
+        }
+
+        .pricing-card ul {
+            list-style: none;
+            margin-bottom: 24px;
+        }
+
+        .pricing-card li {
+            font-size: 14px;
+            color: #aaa;
+            margin-bottom: 14px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .pricing-card li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #555;
+        }
+
+        .faq-grid {
+            display: grid;
+            gap: 48px;
+        }
+
+        .faq-item {
+            padding-bottom: 48px;
+            border-bottom: 1px solid #2a2a2a;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .faq-item strong {
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .faq-item p {
+            margin-top: 12px;
+            font-size: 15px;
+        }
+
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: start;
+        }
+
+        .contact-text h3 {
+            font-size: 24px;
+            margin-bottom: 16px;
+        }
+
+        .contact-text p {
+            font-size: 15px;
+            color: #aaa;
+            margin-bottom: 24px;
+        }
+
+        .contact-email {
+            display: inline-block;
+            color: white;
+            text-decoration: underline;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        form {
+            display: grid;
+            gap: 16px;
+        }
+
+        form input,
+        form textarea {
+            background: #1a1a1a;
+            border: 1px solid #2a2a2a;
+            color: #e0e0e0;
+            padding: 12px 16px;
+            border-radius: 4px;
+            font-family: inherit;
+            font-size: 14px;
+        }
+
+        form input::placeholder,
+        form textarea::placeholder {
+            color: #666;
+        }
+
+        form textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-submit {
+            background: white;
+            color: #0f0f0f;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+            width: fit-content;
+            font-size: 14px;
+        }
+
+        .form-submit:hover {
+            background: #e0e0e0;
+        }
+
+        footer {
+            background: #1a1a1a;
+            border-top: 1px solid #2a2a2a;
+            padding: 80px 40px 40px;
+        }
+
+        .footer-wrapper {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .footer-nav {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 60px;
+            margin-bottom: 60px;
+            padding-bottom: 60px;
+            border-bottom: 1px solid #2a2a2a;
+        }
+
+        .footer-section h4 {
+            font-size: 12px;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section a {
+            font-size: 13px;
+            color: #999;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 12px;
+            transition: color 0.2s;
+        }
+
+        .footer-section a:hover {
+            color: #e0e0e0;
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+            color: #666;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 32px;
+        }
+
+        .footer-links a {
+            color: #666;
+            text-decoration: none;
+            font-size: 12px;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: #999;
+        }
+
+        @media (max-width: 768px) {
+            main {
+                padding: 0 20px;
+            }
+
+            h1 {
+                font-size: 36px;
+            }
+
+            h2 {
+                font-size: 28px;
+            }
+
+            section {
+                padding: 60px 0;
+            }
+
+            .services-grid,
+            .pricing-grid,
+            .contact-wrapper {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+
+            .header-nav {
+                flex-direction: column;
+                gap: 16px;
+            }
+
+            header {
+                flex-direction: column;
+                gap: 16px;
+            }
+
+            .footer-nav {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 40px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 16px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a class="logo" href="#hero" style="color:inherit;text-decoration:none"><img src="data:image/png;base64,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" alt="Groundbuilt logo"><span>Groundbuilt</span></a>
+        <div class="header-nav">
+            <nav>
+                <a href="#what">What</a>
+                <a href="#pricing">Pricing</a>
+                <a href="#faq">FAQ</a>
+            </nav>
+            <a href="mailto:groundbuiltapp@gmail.com" class="cta-button">Get in touch</a>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero" id="hero">
+            <h1>Email automation that drives results.</h1>
+            <p>I design and manage email sequences for small businesses. Customer onboarding, engagement flows, win-back campaigns. Automate what matters and scale your business.</p>
+            <div class="button-group">
+                <a href="#contact" class="btn-primary">Schedule a call</a>
+                <a href="#pricing" class="btn-secondary">See pricing</a>
+            </div>
+        </section>
+
+        <section id="what">
+            <h2>What I build.</h2>
+            <div class="services-grid">
+                <div>
+                    <div class="service-item">
+                        <h3>Welcome sequences</h3>
+                        <p>Make a strong first impression with new customers or leads. Set the tone for engagement and build trust from day one.</p>
+                    </div>
+                    <div class="service-item">
+                        <h3>Customer nurture flows</h3>
+                        <p>Keep customers engaged with timely, relevant emails. Build loyalty and encourage repeat business.</p>
+                    </div>
+                    <div class="service-item">
+                        <h3>Abandoned cart recovery</h3>
+                        <p>Win back sales from hesitant buyers with targeted follow-up sequences. Recover 15-20% of abandoned purchases.</p>
+                    </div>
+                </div>
+                <div>
+                    <div class="service-item">
+                        <h3>Win-back campaigns</h3>
+                        <p>Re-engage inactive customers with personalized offers and fresh reasons to come back. Resurrect dormant relationships.</p>
+                    </div>
+                    <div class="service-item">
+                        <h3>Promotional sequences</h3>
+                        <p>Launch product announcements, seasonal promotions, and special offers. Time emails perfectly to maximize conversions.</p>
+                    </div>
+                    <div class="service-item">
+                        <h3>Continuous optimization</h3>
+                        <p>Monitor performance, test subject lines and copy, and refine based on real data every month. Always improving.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="pricing">
+            <h2>Pricing.</h2>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="price-label">Initial Setup</div>
+                    <div class="price">$299</div>
+                    <div class="price-period">one-time</div>
+                    <ul>
+                        <li>Strategy consultation call</li>
+                        <li>Email audit of your current setup</li>
+                        <li>Build and launch 1-2 sequences</li>
+                        <li>Email platform setup (if needed)</li>
+                        <li>Initial optimization and testing</li>
+                    </ul>
+                </div>
+                <div class="pricing-card">
+                    <div class="price-label">Ongoing Management</div>
+                    <div class="price">$199</div>
+                    <div class="price-period">/month • month-to-month</div>
+                    <ul>
+                        <li>Monthly performance review</li>
+                        <li>Continuous optimization and testing</li>
+                        <li>Sequence updates and refinement</li>
+                        <li>Strategic guidance on email campaigns</li>
+                        <li>Email support</li>
+                    </ul>
+                </div>
+            </div>
+            <p style="margin-top: 48px; font-size: 14px; color: #666;">Start with the initial setup, then stay on the monthly plan as long as you need. No long-term contract. Cancel anytime with 30 days notice.</p>
+        </section>
+
+        <section id="faq">
+            <h2>Questions?</h2>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <strong>Which email platform do you work with?</strong>
+                    <p>I work with most major email platforms. We'll figure out which one makes sense for your business during our strategy call. If you don't have a platform yet, I'll recommend based on your needs and budget.</p>
+                </div>
+                <div class="faq-item">
+                    <strong>How long before I see results?</strong>
+                    <p>Sequences launch in 2-3 weeks. You'll see impact within 30-60 days depending on your list size and audience engagement.</p>
+                </div>
+                <div class="faq-item">
+                    <strong>What if I'm not happy?</strong>
+                    <p>First 30 days are a trial period. If the sequences aren't working for you, no hard feelings. Cancel anytime with 30 days notice after that.</p>
+                </div>
+                <div class="faq-item">
+                    <strong>Do you manage my entire email program?</strong>
+                    <p>It depends on what you need. I can handle:</p>
+                    <ul style="margin-left: 20px; margin-bottom: 16px;">
+                        <li>Newsletters</li>
+                        <li>Promotions</li>
+                        <li>Seasonal campaigns</li>
+                        <li>Custom projects</li>
+                    </ul>
+                    <p>Everything is negotiable. Let's talk about your specific goals.</p>
+                </div>
+                <div class="faq-item">
+                    <strong>What about email platform costs?</strong>
+                    <p>Platform fees are separate from my service fee. Most run $50-300/month depending on your list size, so factor that into your budget.</p>
+                </div>
+                <div class="faq-item">
+                    <strong>How do we get started?</strong>
+                    <p>Send me a message with your business type and current email setup (if any). We'll schedule your strategy call to map out sequences, then I'll handle the build. After launch, you stay on the monthly plan for ongoing management.</p>
+                </div>
+                <div class="faq-item">
+                    <strong>What if I just want a one-time project?</strong>
+                    <p>You can do the $399 setup and sequences, then stop. But I'd recommend staying on monthly management so I can optimize based on real performance data and fix things as they come up.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2>Get in touch.</h2>
+            <div class="contact-wrapper">
+                <div class="contact-text">
+                    <h3>Questions?</h3>
+                    <p>Got questions about how email automation works for your business? Want to explore if this is a good fit? Let's talk.</p>
+                    <p><a href="mailto:groundbuiltapp@gmail.com" class="contact-email">Email: groundbuiltapp@gmail.com</a></p>
+                    <p><a href="tel:+15108313661" class="contact-email">Phone: (510) 831-3661</a></p>
+                    <p style="margin-top: 32px; font-size: 13px; color: #666;">Or use the form on the right.</p>
+                </div>
+                <form>
+                    <input type="text" name="name" placeholder="Name" required>
+                    <input type="email" name="email" placeholder="Email" required>
+                    <input type="text" name="subject" placeholder="Subject" required>
+                    <textarea name="message" placeholder="Message" required></textarea>
+                    <button type="submit" class="form-submit">Send message →</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-wrapper">
+            <div class="footer-nav">
+                <div class="footer-section">
+                    <h4>Product</h4>
+                    <ul>
+                        <li><a href="#what">What I do</a></li>
+                        <li><a href="#pricing">Pricing</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="#">About</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="#">Privacy</a></li>
+                        <li><a href="#">Terms</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 Groundbuilt. Email automation for small businesses.</p>
+                <div class="footer-links">
+                    <a href="#">Privacy</a>
+                    <a href="#">Terms</a>
+                    <a href="#contact">Contact</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
