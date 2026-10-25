@@ -341,7 +341,6 @@
         .section {
             padding-top: 104px;
             padding-bottom: 104px;
-            border-top: 1px solid var(--line);
         }
 
         .section-heading {
@@ -374,16 +373,12 @@
         .steps {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            border: 1px solid var(--line);
+            gap: 32px;
         }
 
         .step {
             min-height: 196px;
-            padding: 25px 26px;
-        }
-
-        .step + .step {
-            border-left: 1px solid var(--line);
+            padding: 0;
         }
 
         .step-number {
@@ -415,7 +410,6 @@
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 0 54px;
-            border-top: 1px solid var(--line);
         }
 
         .service {
@@ -423,17 +417,16 @@
             grid-template-columns: 30px 1fr;
             gap: 15px;
             padding: 25px 0 27px;
-            border-bottom: 1px solid var(--line);
+        }
+
+        .service h3 {
+            margin-top: 1px;
         }
 
         .service-mark {
             color: #b6b5ae;
             font-family: var(--serif);
             font-size: 19px;
-        }
-
-        .service h3 {
-            margin-top: 1px;
         }
 
         .pricing-section {
@@ -551,11 +544,12 @@
         }
 
         .faq-list {
-            border-top: 1px solid var(--line);
+            display: grid;
+            gap: 12px;
         }
 
         details {
-            border-bottom: 1px solid var(--line);
+            padding: 0 0 12px;
         }
 
         summary {
@@ -690,7 +684,6 @@
         }
 
         .site-footer {
-            border-top: 1px solid var(--line);
             padding: 23px 0;
         }
 
@@ -705,6 +698,19 @@
             margin: 0;
             color: #898881;
             font-size: 11px;
+        }
+
+        .footer-founder {
+            margin: 15px 0 0;
+            color: #898881;
+            font-size: 11px;
+        }
+
+        .footer-founder a {
+            margin-left: 8px;
+            color: #aaa9a2;
+            text-decoration-color: #686760;
+            text-underline-offset: 3px;
         }
 
         .footer-links {
@@ -846,14 +852,12 @@
                 grid-template-columns: 1fr;
             }
 
-            .step {
-                min-height: 0;
-                padding: 20px;
+            .steps {
+                gap: 30px;
             }
 
-            .step + .step {
-                border-top: 1px solid var(--line);
-                border-left: 0;
+            .step {
+                min-height: 0;
             }
 
             .step-number {
@@ -905,10 +909,10 @@
         </a>
         <div class="header-right">
             <nav class="main-nav" aria-label="Main navigation">
-                <a href="#how-it-works">How it works</a>
-                <a href="#pricing">Pricing</a>
+                <a href="how-it-works.html">How it works</a>
+                <a href="pricing.html">Pricing</a>
             </nav>
-            <a class="header-cta" href="#contact">Let’s talk <span aria-hidden="true">↗</span></a>
+            <a class="header-cta" href="contact.html">Let’s talk <span aria-hidden="true">↗</span></a>
         </div>
     </header>
 
@@ -920,8 +924,8 @@
                     <h1 id="hero-title">Good customers deserve a reason to <em>come back.</em></h1>
                     <p class="hero-copy">Groundbuilt sets up thoughtful email follow-ups for neighborhood shops, studios, and service businesses, so staying in touch doesn’t become one more thing on your list.</p>
                     <div class="hero-actions">
-                        <a class="button" href="#contact">Tell Groundbuilt about your business <span aria-hidden="true">↗</span></a>
-                        <a class="button button-secondary" href="#how-it-works">See how it works</a>
+                        <a class="button" href="contact.html">Tell Groundbuilt about your business <span aria-hidden="true">↗</span></a>
+                        <a class="button button-secondary" href="how-it-works.html">See how it works</a>
                     </div>
                     <p class="plain-note">One person to work with. Clear pricing. No long-term contract.</p>
                 </div>
@@ -944,31 +948,6 @@
                         <p class="email-signoff">See you around,<br>Sam</p>
                     </div>
                     <p class="scene-caption"><span>Written like a person, not a campaign.</span><span>Sent at just the right time ↗</span></p>
-                </div>
-            </section>
-
-            <section class="section" id="how-it-works">
-                <div class="section-heading">
-                    <p class="eyebrow">A simpler way to keep in touch</p>
-                    <h2>Make the good parts of your business <em>easier to repeat.</em></h2>
-                    <p class="section-intro">You already know what makes people choose you. Groundbuilt turns that into a few useful emails that sound like your business, then takes care of the sending.</p>
-                </div>
-                <div class="steps">
-                    <article class="step">
-                        <span class="step-number">01</span>
-                        <h3>We talk it through</h3>
-                        <p>Tell Groundbuilt what you do, who you serve, and what’s slipping through the cracks. No prep or marketing jargon needed.</p>
-                    </article>
-                    <article class="step">
-                        <span class="step-number">02</span>
-                        <h3>Groundbuilt builds the follow-up</h3>
-                        <p>Groundbuilt writes and sets up the emails in your platform, with your voice and your customers in mind. You review before anything goes out.</p>
-                    </article>
-                    <article class="step">
-                        <span class="step-number">03</span>
-                        <h3>It runs in the background</h3>
-                        <p>Your customers hear from you at the right moments. Groundbuilt keeps an eye on what’s working and makes practical improvements.</p>
-                    </article>
                 </div>
             </section>
 
@@ -998,137 +977,21 @@
                 </div>
             </section>
         </div>
-
-        <section class="section pricing-section" id="pricing">
-            <div class="wrap pricing-layout">
-                <div class="pricing-heading">
-                    <p class="eyebrow">Straightforward pricing</p>
-                    <h2>Small-business-sized, <em>not agency-sized.</em></h2>
-                    <p>Start with the setup. Add monthly care only if it’s useful. No long contract or surprise add-ons.</p>
-                </div>
-                <div class="price-cards">
-                    <article class="price-card">
-                        <p class="card-label">A one-time start</p>
-                        <p class="price">$199</p>
-                        <p class="price-period">one-time setup</p>
-                        <h3>Get the basics in place</h3>
-                        <ul>
-                            <li>A conversation about your business and goals</li>
-                            <li>A look at your current email setup</li>
-                            <li>One or two follow-up sequences built and tested</li>
-                            <li>Help getting your email platform ready</li>
-                        </ul>
-                    </article>
-                    <article class="price-card featured">
-                        <p class="card-label">Ongoing, if you want it</p>
-                        <p class="price">$99</p>
-                        <p class="price-period">per month · cancel with 30 days’ notice</p>
-                        <h3>Keep it running well</h3>
-                        <ul>
-                            <li>A monthly check on how things are going</li>
-                            <li>Small updates and improvements</li>
-                            <li>Help with the emails you already have</li>
-                            <li>A real person to ask when you get stuck</li>
-                        </ul>
-                    </article>
-                </div>
-                <p class="pricing-footnote">Your email platform may have its own fee, paid directly to them. Groundbuilt will talk through the options before you choose one.</p>
-            </div>
-        </section>
-
-        <div class="wrap">
-            <section class="section" id="faq">
-                <div class="section-heading">
-                    <p class="eyebrow">A few things people ask</p>
-                    <h2>Fair questions. <em>Plain answers.</em></h2>
-                </div>
-                <div class="faq-list">
-                    <details>
-                        <summary>Do I need an email platform already?</summary>
-                        <p>No. If you have one, Groundbuilt can start there. If not, Groundbuilt will help you find a straightforward option that fits your list and budget. The platform’s own fee is separate from Groundbuilt’s service.</p>
-                    </details>
-                    <details>
-                        <summary>How long does setup take?</summary>
-                        <p>Usually a couple of weeks, depending on how quickly Groundbuilt can gather your details and get access to the right tools. Groundbuilt will share a clear timeline before work begins.</p>
-                    </details>
-                    <details>
-                        <summary>Will the emails sound like my business?</summary>
-                        <p>That’s the point. Groundbuilt uses your words, your offers, and the way you actually talk to customers. You get to review and approve everything before it goes live.</p>
-                    </details>
-                    <details>
-                        <summary>Am I locked into monthly management?</summary>
-                        <p>No. The $199 setup is a one-time project. Ongoing management is optional at $99 per month, and you can stop with 30 days’ notice.</p>
-                    </details>
-                    <details>
-                        <summary>What kind of business is this for?</summary>
-                        <p>Independent shops, studios, and service businesses that want to stay in touch with their customers without adding another daily task. If you’re not sure whether it fits, just ask.</p>
-                    </details>
-                </div>
-            </section>
-
-            <section class="section contact-section" id="contact">
-                <div class="contact-panel">
-                    <div class="contact-copy">
-                        <p class="eyebrow">No pitch deck. Just a conversation.</p>
-                        <h2>Tell me a little about what you do.</h2>
-                        <p>Send Groundbuilt a note about your business and what you’d like to make easier. You’ll hear back from a real person, and you can both decide if it’s a fit.</p>
-                        <div class="contact-details">
-                            <a href="mailto:groundbuilt@orchanian.cc">groundbuilt@orchanian.cc</a>
-                            <a href="tel:+15108313661">(510) 831-3661</a>
-                        </div>
-                    </div>
-                    <form id="contact-form">
-                        <div class="form-row">
-                            <label for="name">Your name
-                                <input id="name" name="name" autocomplete="name" placeholder="Sam Rivera" required>
-                            </label>
-                            <label for="email">Your email
-                                <input id="email" name="email" type="email" autocomplete="email" placeholder="sam@example.com" required>
-                            </label>
-                        </div>
-                        <label for="business">What kind of business do you run?
-                            <input id="business" name="business" placeholder="A neighborhood shop, a studio…" required>
-                        </label>
-                        <label for="message">What would you like help with?
-                            <textarea id="message" name="message" placeholder="A sentence or two is plenty." required></textarea>
-                        </label>
-                        <div class="form-actions">
-                            <button class="button" type="submit">Open an email to Groundbuilt <span aria-hidden="true">↗</span></button>
-                            <p class="form-note">This opens your email app with your note ready to send.</p>
-                        </div>
-                    </form>
-                </div>
-            </section>
-        </div>
     </main>
 
     <footer class="site-footer">
         <div class="wrap footer-inner">
             <p>© 2026 Groundbuilt · Built for the folks who keep local places going.</p>
             <div class="footer-links">
-                <a href="#what-i-build">What Groundbuilt does</a>
-                <a href="#pricing">Pricing</a>
-                <a href="#contact">Get in touch</a>
+                <a href="how-it-works.html">How it works</a>
+                <a href="pricing.html">Pricing</a>
+                <a href="contact.html">Get in touch</a>
             </div>
+        </div>
+        <div class="wrap">
+            <p class="footer-founder">Founder: Jonathan Orchanian <a href="https://www.linkedin.com/in/jonathanorchanian" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a></p>
         </div>
     </footer>
 
-    <script>
-        document.querySelector("#contact-form").addEventListener("submit", (event) => {
-            event.preventDefault();
-            const form = event.currentTarget;
-            const fields = new FormData(form);
-            const subject = `Email help for ${fields.get("business")}`;
-            const body = [
-                `Name: ${fields.get("name")}`,
-                `Email: ${fields.get("email")}`,
-                `Business: ${fields.get("business")}`,
-                "",
-                fields.get("message")
-            ].join("\n");
-
-            window.location.href = `mailto:groundbuilt@orchanian.cc?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-        });
-    </script>
 </body>
 </html>
