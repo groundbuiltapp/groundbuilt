@@ -1,0 +1,1134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Thoughtful, practical email follow-ups for independent shops, studios, and service businesses. Built and managed by a real person.">
+    <meta name="theme-color" content="#111110">
+    <title>Groundbuilt: email that brings customers back</title>
+    <link rel="icon" type="image/png" href="groundbuilt_pfp.png">
+    <style>
+        :root {
+            color-scheme: dark;
+            --ink: #111110;
+            --panel: #191918;
+            --panel-light: #222220;
+            --paper: #f0efe9;
+            --muted: #a6a59f;
+            --line: #353531;
+            --soft-line: #d8d7d0;
+            --serif: Georgia, "Times New Roman", serif;
+            --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 96px;
+        }
+
+        body {
+            margin: 0;
+            background: var(--ink);
+            color: var(--paper);
+            font-family: var(--sans);
+            font-size: 16px;
+            line-height: 1.65;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        a:focus-visible,
+        button:focus-visible,
+        input:focus-visible,
+        textarea:focus-visible {
+            outline: 2px solid var(--paper);
+            outline-offset: 4px;
+        }
+
+        .site-header {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 28px;
+            padding: 16px max(28px, calc((100vw - 1160px) / 2));
+            border-bottom: 1px solid rgb(255 255 255 / 8%);
+            background: rgb(17 17 16 / 94%);
+            backdrop-filter: blur(12px);
+        }
+
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 16px;
+            font-weight: 700;
+            letter-spacing: -0.04em;
+            text-decoration: none;
+        }
+
+        .brand img {
+            display: block;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+        }
+
+        .header-right,
+        .main-nav {
+            display: flex;
+            align-items: center;
+        }
+
+        .header-right {
+            gap: 30px;
+        }
+
+        .main-nav {
+            gap: 26px;
+        }
+
+        .main-nav a,
+        .text-link {
+            color: var(--muted);
+            font-size: 13px;
+            text-decoration: none;
+            transition: color 160ms ease;
+        }
+
+        .main-nav a:hover,
+        .text-link:hover {
+            color: var(--paper);
+        }
+
+        .header-cta,
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            min-height: 46px;
+            padding: 0 19px;
+            border: 1px solid var(--paper);
+            border-radius: 3px;
+            background: var(--paper);
+            color: var(--ink);
+            font-size: 13px;
+            font-weight: 650;
+            text-decoration: none;
+            transition: background 160ms ease, color 160ms ease, transform 160ms ease;
+        }
+
+        .header-cta {
+            min-height: 38px;
+            padding: 0 15px;
+        }
+
+        .button:hover,
+        .header-cta:hover {
+            transform: translateY(-2px);
+            background: transparent;
+            color: var(--paper);
+        }
+
+        .button-secondary {
+            border-color: var(--line);
+            background: transparent;
+            color: var(--paper);
+        }
+
+        .button-secondary:hover {
+            border-color: var(--paper);
+        }
+
+        main {
+            overflow: hidden;
+        }
+
+        .wrap {
+            width: min(1120px, calc(100% - 56px));
+            margin: 0 auto;
+        }
+
+        .hero {
+            display: grid;
+            grid-template-columns: minmax(0, 1.1fr) minmax(340px, 0.9fr);
+            align-items: center;
+            gap: clamp(40px, 7vw, 96px);
+            min-height: 650px;
+            padding-top: 94px;
+            padding-bottom: 100px;
+        }
+
+        .eyebrow {
+            display: inline-block;
+            margin: 0 0 22px;
+            color: #c3c2bb;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            line-height: 1.4;
+            text-transform: uppercase;
+        }
+
+        h1,
+        h2,
+        h3,
+        p {
+            margin-top: 0;
+        }
+
+        h1,
+        h2 {
+            font-family: var(--serif);
+            font-weight: 400;
+            letter-spacing: -0.045em;
+        }
+
+        h1 {
+            max-width: 660px;
+            margin-bottom: 22px;
+            font-size: clamp(48px, 6.2vw, 78px);
+            line-height: 0.99;
+        }
+
+        h1 em,
+        h2 em {
+            color: #b9b8b1;
+            font-weight: 400;
+        }
+
+        .hero-copy {
+            max-width: 540px;
+            margin-bottom: 28px;
+            color: #b5b4ae;
+            font-size: 17px;
+            line-height: 1.75;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+
+        .plain-note {
+            margin: 0;
+            color: #85847e;
+            font-size: 12px;
+        }
+
+        .inbox-scene {
+            position: relative;
+            padding: 23px;
+            border: 1px solid #3d3c37;
+            border-radius: 5px;
+            background:
+                radial-gradient(ellipse at 90% 0%, rgb(255 255 255 / 6%), transparent 47%),
+                var(--panel);
+            box-shadow: 0 28px 80px rgb(0 0 0 / 25%);
+        }
+
+        .scene-topline {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            margin-bottom: 23px;
+            color: #bdbcb5;
+            font-size: 11px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .scene-dots {
+            display: flex;
+            gap: 5px;
+        }
+
+        .scene-dots i {
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: #74736c;
+        }
+
+        .email-paper {
+            padding: 25px 24px 21px;
+            background: #e8e7e0;
+            color: #252522;
+        }
+
+        .email-from {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            padding-bottom: 17px;
+            border-bottom: 1px solid #cecdc6;
+        }
+
+        .sender-mark {
+            display: grid;
+            width: 34px;
+            height: 34px;
+            place-items: center;
+            border-radius: 50%;
+            background: #33332f;
+            color: #f0efe9;
+            font-family: var(--serif);
+            font-size: 15px;
+        }
+
+        .sender-copy {
+            display: grid;
+            font-size: 11px;
+            line-height: 1.4;
+        }
+
+        .sender-copy strong {
+            font-size: 12px;
+        }
+
+        .sender-copy span {
+            color: #6b6a64;
+        }
+
+        .email-subject {
+            margin: 19px 0 11px;
+            font-family: var(--serif);
+            font-size: 23px;
+            letter-spacing: -0.03em;
+            line-height: 1.2;
+        }
+
+        .email-body {
+            margin: 0;
+            color: #5a5953;
+            font-size: 12px;
+            line-height: 1.75;
+        }
+
+        .email-signoff {
+            margin-top: 16px;
+            color: #33332f;
+            font-family: var(--serif);
+            font-size: 15px;
+        }
+
+        .scene-caption {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            margin: 17px 0 0;
+            color: #a5a49d;
+            font-size: 11px;
+        }
+
+        .scene-caption span:last-child {
+            color: #d8d7d0;
+        }
+
+        .section {
+            padding-top: 104px;
+            padding-bottom: 104px;
+            border-top: 1px solid var(--line);
+        }
+
+        .section-heading {
+            display: grid;
+            grid-template-columns: 1fr minmax(250px, 0.62fr);
+            align-items: end;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .section-heading .eyebrow {
+            grid-column: 1 / -1;
+            margin-bottom: -22px;
+        }
+
+        h2 {
+            max-width: 690px;
+            margin-bottom: 0;
+            font-size: clamp(38px, 4.3vw, 54px);
+            line-height: 1.08;
+        }
+
+        .section-intro {
+            margin: 0 0 4px;
+            color: var(--muted);
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            border: 1px solid var(--line);
+        }
+
+        .step {
+            min-height: 196px;
+            padding: 25px 26px;
+        }
+
+        .step + .step {
+            border-left: 1px solid var(--line);
+        }
+
+        .step-number {
+            display: block;
+            margin-bottom: 33px;
+            color: #8b8a84;
+            font-family: var(--serif);
+            font-size: 18px;
+        }
+
+        .step h3,
+        .service h3,
+        .price-card h3,
+        .contact-copy h3 {
+            margin-bottom: 8px;
+            font-size: 16px;
+            font-weight: 650;
+        }
+
+        .step p,
+        .service p {
+            margin-bottom: 0;
+            color: var(--muted);
+            font-size: 13px;
+            line-height: 1.75;
+        }
+
+        .services {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0 54px;
+            border-top: 1px solid var(--line);
+        }
+
+        .service {
+            display: grid;
+            grid-template-columns: 30px 1fr;
+            gap: 15px;
+            padding: 25px 0 27px;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .service-mark {
+            color: #b6b5ae;
+            font-family: var(--serif);
+            font-size: 19px;
+        }
+
+        .service h3 {
+            margin-top: 1px;
+        }
+
+        .pricing-section {
+            background:
+                radial-gradient(ellipse at 5% 50%, rgb(255 255 255 / 3%), transparent 48%),
+                #171716;
+        }
+
+        .pricing-layout {
+            display: grid;
+            grid-template-columns: minmax(220px, 0.72fr) 1.28fr;
+            gap: 70px;
+            align-items: start;
+        }
+
+        .pricing-heading .eyebrow {
+            margin-bottom: 19px;
+        }
+
+        .pricing-heading h2 {
+            margin-bottom: 17px;
+        }
+
+        .pricing-heading p:last-child {
+            max-width: 340px;
+            margin-bottom: 0;
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .price-cards {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 13px;
+        }
+
+        .price-card {
+            padding: 23px;
+            border: 1px solid #41403b;
+            border-radius: 3px;
+            background: #1c1c1a;
+        }
+
+        .price-card.featured {
+            background: #e8e7e0;
+            color: #22221f;
+        }
+
+        .price-card .card-label {
+            margin-bottom: 25px;
+            color: #989790;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .price-card.featured .card-label {
+            color: #64635d;
+        }
+
+        .price {
+            margin-bottom: 2px;
+            font-family: var(--serif);
+            font-size: 43px;
+            letter-spacing: -0.05em;
+            line-height: 1;
+        }
+
+        .price-period {
+            margin-bottom: 21px;
+            color: #aaa9a2;
+            font-size: 11px;
+        }
+
+        .featured .price-period {
+            color: #6d6c66;
+        }
+
+        .price-card h3 {
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+
+        .price-card ul {
+            display: grid;
+            gap: 9px;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .price-card li {
+            display: flex;
+            gap: 9px;
+            color: #b8b7b0;
+            font-size: 11px;
+            line-height: 1.5;
+        }
+
+        .featured li {
+            color: #53534e;
+        }
+
+        .price-card li::before {
+            content: "·";
+            color: #85847e;
+        }
+
+        .pricing-footnote {
+            grid-column: 2;
+            margin: -47px 0 0;
+            color: #989790;
+            font-size: 11px;
+        }
+
+        .faq-list {
+            border-top: 1px solid var(--line);
+        }
+
+        details {
+            border-bottom: 1px solid var(--line);
+        }
+
+        summary {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            padding: 19px 0;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            list-style: none;
+        }
+
+        summary::-webkit-details-marker {
+            display: none;
+        }
+
+        summary::after {
+            color: #aaa9a2;
+            content: "+";
+            font-size: 20px;
+            font-weight: 400;
+        }
+
+        details[open] summary::after {
+            content: "−";
+        }
+
+        details p {
+            max-width: 680px;
+            margin: -2px 0 20px;
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .contact-section {
+            padding-bottom: 115px;
+        }
+
+        .contact-panel {
+            display: grid;
+            grid-template-columns: 0.9fr 1.1fr;
+            gap: clamp(35px, 7vw, 90px);
+            padding: clamp(26px, 5vw, 54px);
+            border: 1px solid #42413b;
+            background: var(--panel);
+        }
+
+        .contact-copy h2 {
+            margin-bottom: 19px;
+            font-size: clamp(38px, 4vw, 51px);
+        }
+
+        .contact-copy > p:not(.eyebrow) {
+            max-width: 340px;
+            margin-bottom: 23px;
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .contact-details {
+            display: grid;
+            justify-items: start;
+            gap: 8px;
+            margin-top: 28px;
+        }
+
+        .contact-details a {
+            color: var(--paper);
+            font-size: 13px;
+            text-decoration-color: #686760;
+            text-underline-offset: 4px;
+        }
+
+        form {
+            display: grid;
+            gap: 15px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 13px;
+        }
+
+        label {
+            display: grid;
+            gap: 6px;
+            color: #c7c6bf;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            border: 1px solid #44433e;
+            border-radius: 2px;
+            padding: 12px 13px;
+            background: #111110;
+            color: var(--paper);
+            font: inherit;
+            font-size: 13px;
+        }
+
+        input::placeholder,
+        textarea::placeholder {
+            color: #77766f;
+        }
+
+        textarea {
+            min-height: 116px;
+            resize: vertical;
+        }
+
+        .form-actions {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .form-actions .button {
+            cursor: pointer;
+        }
+
+        .form-note {
+            margin: 0;
+            color: #96958e;
+            font-size: 10px;
+        }
+
+        .site-footer {
+            border-top: 1px solid var(--line);
+            padding: 23px 0;
+        }
+
+        .footer-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .footer-inner p {
+            margin: 0;
+            color: #898881;
+            font-size: 11px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .footer-links a {
+            color: #aaa9a2;
+            font-size: 11px;
+            text-decoration: none;
+        }
+
+        @media (max-width: 780px) {
+            .site-header {
+                padding-right: 22px;
+                padding-left: 22px;
+            }
+
+            .header-right {
+                gap: 18px;
+            }
+
+            .main-nav {
+                gap: 15px;
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
+                gap: 44px;
+                min-height: auto;
+                padding-top: 76px;
+                padding-bottom: 76px;
+            }
+
+            .inbox-scene {
+                width: min(100%, 510px);
+                margin: 0 auto;
+            }
+
+            .section {
+                padding-top: 76px;
+                padding-bottom: 76px;
+            }
+
+            .pricing-layout {
+                grid-template-columns: 1fr;
+                gap: 33px;
+            }
+
+            .pricing-footnote {
+                grid-column: 1;
+                margin: -18px 0 0;
+            }
+        }
+
+        @media (max-width: 560px) {
+            html {
+                scroll-padding-top: 80px;
+            }
+
+            .wrap {
+                width: min(100% - 40px, 440px);
+            }
+
+            .site-header {
+                gap: 10px;
+                padding: 12px 20px;
+            }
+
+            .brand {
+                font-size: 14px;
+            }
+
+            .brand img {
+                width: 27px;
+                height: 27px;
+            }
+
+            .header-right {
+                gap: 13px;
+            }
+
+            .main-nav {
+                gap: 12px;
+            }
+
+            .main-nav a {
+                font-size: 11px;
+            }
+
+            .header-cta {
+                min-height: 34px;
+                padding: 0 10px;
+                font-size: 11px;
+            }
+
+            .hero {
+                padding-top: 66px;
+                padding-bottom: 65px;
+            }
+
+            h1 {
+                font-size: clamp(46px, 13vw, 65px);
+            }
+
+            .hero-copy {
+                font-size: 15px;
+            }
+
+            .hero-actions {
+                display: grid;
+                grid-template-columns: 1fr;
+                justify-items: start;
+            }
+
+            .inbox-scene {
+                padding: 15px;
+            }
+
+            .email-paper {
+                padding: 20px 17px 17px;
+            }
+
+            .section-heading {
+                grid-template-columns: 1fr;
+                gap: 17px;
+                margin-bottom: 29px;
+            }
+
+            .section-heading .eyebrow {
+                margin-bottom: -10px;
+            }
+
+            .steps,
+            .services,
+            .price-cards,
+            .contact-panel {
+                grid-template-columns: 1fr;
+            }
+
+            .step {
+                min-height: 0;
+                padding: 20px;
+            }
+
+            .step + .step {
+                border-top: 1px solid var(--line);
+                border-left: 0;
+            }
+
+            .step-number {
+                margin-bottom: 18px;
+            }
+
+            .services {
+                gap: 0;
+            }
+
+            .price-cards {
+                gap: 11px;
+            }
+
+            .pricing-footnote {
+                margin-top: -17px;
+            }
+
+            .contact-panel {
+                gap: 30px;
+                padding: 24px 19px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-inner {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <a class="brand" href="#top" aria-label="Groundbuilt home">
+            <img src="groundbuilt_pfp.png" alt="">
+            <span>Groundbuilt</span>
+        </a>
+        <div class="header-right">
+            <nav class="main-nav" aria-label="Main navigation">
+                <a href="#how-it-works">How it works</a>
+                <a href="#pricing">Pricing</a>
+            </nav>
+            <a class="header-cta" href="#contact">Let’s talk <span aria-hidden="true">↗</span></a>
+        </div>
+    </header>
+
+    <main id="top">
+        <div class="wrap">
+            <section class="hero" aria-labelledby="hero-title">
+                <div>
+                    <p class="eyebrow">Email help for independent businesses</p>
+                    <h1 id="hero-title">Good customers deserve a reason to <em>come back.</em></h1>
+                    <p class="hero-copy">Groundbuilt sets up thoughtful email follow-ups for neighborhood shops, studios, and service businesses, so staying in touch doesn’t become one more thing on your list.</p>
+                    <div class="hero-actions">
+                        <a class="button" href="#contact">Tell Groundbuilt about your business <span aria-hidden="true">↗</span></a>
+                        <a class="button button-secondary" href="#how-it-works">See how it works</a>
+                    </div>
+                    <p class="plain-note">One person to work with. Clear pricing. No long-term contract.</p>
+                </div>
+
+                <div class="inbox-scene" aria-label="Example of a friendly customer follow-up email">
+                    <div class="scene-topline">
+                        <span>A little note from your shop</span>
+                        <span class="scene-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+                    </div>
+                    <div class="email-paper">
+                        <div class="email-from">
+                            <div class="sender-mark" aria-hidden="true">S</div>
+                            <div class="sender-copy">
+                                <strong>Sam at the neighborhood shop</strong>
+                                <span>to: you · a week after your visit</span>
+                            </div>
+                        </div>
+                        <h2 class="email-subject">Thanks for stopping by.</h2>
+                        <p class="email-body">Hi Jamie,<br><br>It was lovely having you in. Hope you’re enjoying your new mug. If you’re nearby next week, we’ve got a fresh batch of the little-batch coffee you liked.<br><br>No rush. Just thought you’d want to know.</p>
+                        <p class="email-signoff">See you around,<br>Sam</p>
+                    </div>
+                    <p class="scene-caption"><span>Written like a person, not a campaign.</span><span>Sent at just the right time ↗</span></p>
+                </div>
+            </section>
+
+            <section class="section" id="how-it-works">
+                <div class="section-heading">
+                    <p class="eyebrow">A simpler way to keep in touch</p>
+                    <h2>Make the good parts of your business <em>easier to repeat.</em></h2>
+                    <p class="section-intro">You already know what makes people choose you. Groundbuilt turns that into a few useful emails that sound like your business, then takes care of the sending.</p>
+                </div>
+                <div class="steps">
+                    <article class="step">
+                        <span class="step-number">01</span>
+                        <h3>We talk it through</h3>
+                        <p>Tell Groundbuilt what you do, who you serve, and what’s slipping through the cracks. No prep or marketing jargon needed.</p>
+                    </article>
+                    <article class="step">
+                        <span class="step-number">02</span>
+                        <h3>Groundbuilt builds the follow-up</h3>
+                        <p>Groundbuilt writes and sets up the emails in your platform, with your voice and your customers in mind. You review before anything goes out.</p>
+                    </article>
+                    <article class="step">
+                        <span class="step-number">03</span>
+                        <h3>It runs in the background</h3>
+                        <p>Your customers hear from you at the right moments. Groundbuilt keeps an eye on what’s working and makes practical improvements.</p>
+                    </article>
+                </div>
+            </section>
+
+            <section class="section" id="what-i-build">
+                <div class="section-heading">
+                    <p class="eyebrow">Useful, not overcomplicated</p>
+                    <h2>The follow-ups you mean to send, <em>already sent.</em></h2>
+                    <p class="section-intro">Start with one or two moments that matter. No giant marketing plan required.</p>
+                </div>
+                <div class="services">
+                    <article class="service">
+                        <span class="service-mark" aria-hidden="true">↗</span>
+                        <div><h3>New customer welcome</h3><p>A warm hello, what to expect, and a simple next step after someone signs up or makes their first purchase.</p></div>
+                    </article>
+                    <article class="service">
+                        <span class="service-mark" aria-hidden="true">↻</span>
+                        <div><h3>Come-back reminders</h3><p>A thoughtful nudge when it’s time for another appointment, refill, class, or visit, without making it feel pushy.</p></div>
+                    </article>
+                    <article class="service">
+                        <span class="service-mark" aria-hidden="true">♡</span>
+                        <div><h3>Quiet-customer check-ins</h3><p>Reconnect with people who haven’t been around in a while, with a real reason to get back in touch.</p></div>
+                    </article>
+                    <article class="service">
+                        <span class="service-mark" aria-hidden="true">✳</span>
+                        <div><h3>Promotions &amp; seasonal notes</h3><p>Share a new product, upcoming event, or seasonal offer in a way that still sounds like you.</p></div>
+                    </article>
+                </div>
+            </section>
+        </div>
+
+        <section class="section pricing-section" id="pricing">
+            <div class="wrap pricing-layout">
+                <div class="pricing-heading">
+                    <p class="eyebrow">Straightforward pricing</p>
+                    <h2>Small-business-sized, <em>not agency-sized.</em></h2>
+                    <p>Start with the setup. Add monthly care only if it’s useful. No long contract or surprise add-ons.</p>
+                </div>
+                <div class="price-cards">
+                    <article class="price-card">
+                        <p class="card-label">A one-time start</p>
+                        <p class="price">$299</p>
+                        <p class="price-period">one-time setup</p>
+                        <h3>Get the basics in place</h3>
+                        <ul>
+                            <li>A conversation about your business and goals</li>
+                            <li>A look at your current email setup</li>
+                            <li>One or two follow-up sequences built and tested</li>
+                            <li>Help getting your email platform ready</li>
+                        </ul>
+                    </article>
+                    <article class="price-card featured">
+                        <p class="card-label">Ongoing, if you want it</p>
+                        <p class="price">$199</p>
+                        <p class="price-period">per month · cancel with 30 days’ notice</p>
+                        <h3>Keep it running well</h3>
+                        <ul>
+                            <li>A monthly check on how things are going</li>
+                            <li>Small updates and improvements</li>
+                            <li>Help with the emails you already have</li>
+                            <li>A real person to ask when you get stuck</li>
+                        </ul>
+                    </article>
+                </div>
+                <p class="pricing-footnote">Your email platform may have its own fee, paid directly to them. Groundbuilt will talk through the options before you choose one.</p>
+            </div>
+        </section>
+
+        <div class="wrap">
+            <section class="section" id="faq">
+                <div class="section-heading">
+                    <p class="eyebrow">A few things people ask</p>
+                    <h2>Fair questions. <em>Plain answers.</em></h2>
+                </div>
+                <div class="faq-list">
+                    <details>
+                        <summary>Do I need an email platform already?</summary>
+                        <p>No. If you have one, Groundbuilt can start there. If not, Groundbuilt will help you find a straightforward option that fits your list and budget. The platform’s own fee is separate from Groundbuilt’s service.</p>
+                    </details>
+                    <details>
+                        <summary>How long does setup take?</summary>
+                        <p>Usually a couple of weeks, depending on how quickly Groundbuilt can gather your details and get access to the right tools. Groundbuilt will share a clear timeline before work begins.</p>
+                    </details>
+                    <details>
+                        <summary>Will the emails sound like my business?</summary>
+                        <p>That’s the point. Groundbuilt uses your words, your offers, and the way you actually talk to customers. You get to review and approve everything before it goes live.</p>
+                    </details>
+                    <details>
+                        <summary>Am I locked into monthly management?</summary>
+                        <p>No. The $299 setup is a one-time project. Ongoing management is optional at $199 per month, and you can stop with 30 days’ notice.</p>
+                    </details>
+                    <details>
+                        <summary>What kind of business is this for?</summary>
+                        <p>Independent shops, studios, and service businesses that want to stay in touch with their customers without adding another daily task. If you’re not sure whether it fits, just ask.</p>
+                    </details>
+                </div>
+            </section>
+
+            <section class="section contact-section" id="contact">
+                <div class="contact-panel">
+                    <div class="contact-copy">
+                        <p class="eyebrow">No pitch deck. Just a conversation.</p>
+                        <h2>Tell me a little about what you do.</h2>
+                        <p>Send Groundbuilt a note about your business and what you’d like to make easier. You’ll hear back from a real person, and you can both decide if it’s a fit.</p>
+                        <div class="contact-details">
+                            <a href="mailto:groundbuilt@orchanian.cc">groundbuilt@orchanian.cc</a>
+                            <a href="tel:+15108313661">(510) 831-3661</a>
+                        </div>
+                    </div>
+                    <form id="contact-form">
+                        <div class="form-row">
+                            <label for="name">Your name
+                                <input id="name" name="name" autocomplete="name" placeholder="Sam Rivera" required>
+                            </label>
+                            <label for="email">Your email
+                                <input id="email" name="email" type="email" autocomplete="email" placeholder="sam@example.com" required>
+                            </label>
+                        </div>
+                        <label for="business">What kind of business do you run?
+                            <input id="business" name="business" placeholder="A neighborhood shop, a studio…" required>
+                        </label>
+                        <label for="message">What would you like help with?
+                            <textarea id="message" name="message" placeholder="A sentence or two is plenty." required></textarea>
+                        </label>
+                        <div class="form-actions">
+                            <button class="button" type="submit">Open an email to Groundbuilt <span aria-hidden="true">↗</span></button>
+                            <p class="form-note">This opens your email app with your note ready to send.</p>
+                        </div>
+                    </form>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="wrap footer-inner">
+            <p>© 2026 Groundbuilt · Built for the folks who keep local places going.</p>
+            <div class="footer-links">
+                <a href="#what-i-build">What Groundbuilt does</a>
+                <a href="#pricing">Pricing</a>
+                <a href="#contact">Get in touch</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.querySelector("#contact-form").addEventListener("submit", (event) => {
+            event.preventDefault();
+            const form = event.currentTarget;
+            const fields = new FormData(form);
+            const subject = `Email help for ${fields.get("business")}`;
+            const body = [
+                `Name: ${fields.get("name")}`,
+                `Email: ${fields.get("email")}`,
+                `Business: ${fields.get("business")}`,
+                "",
+                fields.get("message")
+            ].join("\n");
+
+            window.location.href = `mailto:groundbuilt@orchanian.cc?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        });
+    </script>
+</body>
+</html>
